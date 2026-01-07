@@ -35,17 +35,21 @@ const features = [
 
 const WhyUsSection = () => {
   return (
-    <section id="why-us" className="py-24 bg-primary text-primary-foreground">
-      <div className="section-container">
+    <section id="why-us" className="py-28 section-royal relative overflow-hidden">
+      {/* Background decorations */}
+      <div className="absolute top-0 left-1/4 w-96 h-96 bg-royal-500/5 rounded-full blur-3xl" />
+      <div className="absolute bottom-0 right-1/4 w-64 h-64 bg-accent/5 rounded-full blur-3xl" />
+      
+      <div className="section-container relative z-10">
         {/* Section Header */}
         <div className="text-center mb-16">
-          <span className="inline-block text-accent font-semibold text-sm mb-4">
+          <span className="inline-block text-accent font-semibold text-sm mb-4 tracking-wide">
             مميزاتنا
           </span>
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">
+          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-6">
             لماذا تختار شركة المتوسط؟
           </h2>
-          <p className="text-primary-foreground/70 max-w-2xl mx-auto">
+          <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
             نلتزم بتقديم خدمات متميزة تلبي احتياجات عملائنا في قطاع الأعلاف والمطاحن
           </p>
         </div>
@@ -55,16 +59,16 @@ const WhyUsSection = () => {
           {features.map((feature, index) => (
             <div
               key={index}
-              className="group p-8 rounded-lg bg-primary-foreground/5 border border-primary-foreground/10 hover:bg-primary-foreground/10 transition-all duration-300 animate-fade-in"
+              className="glass-card p-8 group"
               style={{ animationDelay: `${index * 0.1}s` }}
             >
-              <div className="w-14 h-14 rounded-lg bg-accent/20 flex items-center justify-center mb-6 group-hover:bg-accent/30 transition-colors">
-                <feature.icon className="w-7 h-7 text-accent" />
+              <div className="icon-royal w-16 h-16 rounded-xl flex items-center justify-center mb-6 group-hover:bg-royal-600/40 transition-colors duration-500">
+                <feature.icon className="w-8 h-8 text-accent" />
               </div>
-              <h3 className="text-xl font-bold mb-3">
+              <h3 className="text-xl font-bold text-foreground mb-4">
                 {feature.title}
               </h3>
-              <p className="text-primary-foreground/70 leading-relaxed">
+              <p className="text-muted-foreground leading-relaxed">
                 {feature.description}
               </p>
             </div>

@@ -62,55 +62,57 @@ const HeroCarousel = () => {
       {slides.map((slide, index) => (
         <div
           key={slide.id}
-          className={`absolute inset-0 transition-opacity duration-700 ${
+          className={`absolute inset-0 transition-opacity duration-1000 ${
             index === currentSlide ? 'opacity-100' : 'opacity-0'
           }`}
         >
           {/* Background Image */}
           <div
-            className="absolute inset-0 bg-cover bg-center"
+            className="absolute inset-0 bg-cover bg-center scale-105"
             style={{ backgroundImage: `url(${slide.image})` }}
           />
           
-          {/* Overlay */}
-          <div className="absolute inset-0 hero-overlay" />
+          {/* Multi-layer overlay for depth */}
+          <div className="absolute inset-0 bg-gradient-to-b from-royal-950/70 via-royal-900/60 to-royal-950/90" />
+          <div className="absolute inset-0 bg-gradient-to-r from-royal-950/80 via-transparent to-royal-950/40" />
+          
+          {/* Subtle light effect */}
+          <div className="absolute top-0 left-1/4 w-1/2 h-1/3 bg-gradient-to-b from-royal-400/5 to-transparent blur-3xl" />
           
           {/* Content */}
           <div className="relative h-full flex items-center">
             <div className="section-container">
-              <div className="max-w-3xl">
+              {/* Glass content panel */}
+              <div 
+                className={`max-w-3xl hero-glass p-8 md:p-12 rounded-xl ${
+                  index === currentSlide ? 'animate-fade-in' : ''
+                }`}
+              >
                 <h2
-                  className={`text-4xl md:text-5xl lg:text-6xl font-bold text-primary-foreground mb-6 leading-tight ${
-                    index === currentSlide ? 'animate-fade-in' : ''
-                  }`}
+                  className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-6 leading-tight"
                   style={{ animationDelay: '0.2s' }}
                 >
                   {slide.headline}
                 </h2>
                 <p
-                  className={`text-lg md:text-xl text-primary-foreground/80 mb-10 ${
-                    index === currentSlide ? 'animate-fade-in' : ''
-                  }`}
+                  className="text-lg md:text-xl text-foreground/70 mb-10"
                   style={{ animationDelay: '0.4s' }}
                 >
                   {slide.subtext}
                 </p>
                 <div
-                  className={`flex flex-col sm:flex-row gap-4 ${
-                    index === currentSlide ? 'animate-fade-in' : ''
-                  }`}
+                  className="flex flex-col sm:flex-row gap-4"
                   style={{ animationDelay: '0.6s' }}
                 >
                   <Button
                     onClick={scrollToContact}
-                    className="gold-button text-lg px-8 py-6"
+                    className="btn-royal text-lg px-8 py-6"
                   >
                     <MessageSquare className="w-5 h-5 ml-2" />
                     اطلب استشارة
                   </Button>
                   <Button
-                    variant="outline"
-                    className="bg-transparent border-2 border-primary-foreground text-primary-foreground hover:bg-primary-foreground/10 text-lg px-8 py-6"
+                    className="btn-outline-royal text-lg px-8 py-6"
                     asChild
                   >
                     <a href="tel:0913228522">
@@ -128,14 +130,14 @@ const HeroCarousel = () => {
       {/* Navigation Arrows */}
       <button
         onClick={prevSlide}
-        className="absolute left-4 top-1/2 -translate-y-1/2 p-3 rounded-full bg-primary-foreground/10 backdrop-blur-sm border border-primary-foreground/20 text-primary-foreground hover:bg-primary-foreground/20 transition-colors"
+        className="absolute left-4 top-1/2 -translate-y-1/2 p-3 rounded-full glass-subtle text-foreground hover:bg-royal-700/40 transition-all duration-300 hover:scale-105"
         aria-label="الشريحة السابقة"
       >
         <ChevronLeft className="w-6 h-6" />
       </button>
       <button
         onClick={nextSlide}
-        className="absolute right-4 top-1/2 -translate-y-1/2 p-3 rounded-full bg-primary-foreground/10 backdrop-blur-sm border border-primary-foreground/20 text-primary-foreground hover:bg-primary-foreground/20 transition-colors"
+        className="absolute right-4 top-1/2 -translate-y-1/2 p-3 rounded-full glass-subtle text-foreground hover:bg-royal-700/40 transition-all duration-300 hover:scale-105"
         aria-label="الشريحة التالية"
       >
         <ChevronRight className="w-6 h-6" />
@@ -147,10 +149,10 @@ const HeroCarousel = () => {
           <button
             key={index}
             onClick={() => setCurrentSlide(index)}
-            className={`w-3 h-3 rounded-full transition-all ${
+            className={`h-2 rounded-full transition-all duration-500 ${
               index === currentSlide
-                ? 'bg-accent w-8'
-                : 'bg-primary-foreground/40 hover:bg-primary-foreground/60'
+                ? 'bg-accent w-10'
+                : 'bg-foreground/30 w-2 hover:bg-foreground/50'
             }`}
             aria-label={`انتقل إلى الشريحة ${index + 1}`}
           />
@@ -158,7 +160,7 @@ const HeroCarousel = () => {
       </div>
 
       {/* Scroll Indicator */}
-      <div className="absolute bottom-8 right-8 text-primary-foreground/60 text-sm hidden md:block">
+      <div className="absolute bottom-8 right-8 text-foreground/50 text-sm hidden md:block">
         <span className="animate-float inline-block">↓ اسحب للأسفل</span>
       </div>
     </section>
